@@ -3,6 +3,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://mysql:3306/camunda
+    username: camunda
+    password: camunda
 camunda:
   bpm:
     application:
