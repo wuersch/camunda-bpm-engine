@@ -14,7 +14,7 @@
     <bpmn:intermediateCatchEvent id="IntermediateCatchEvent_ContinueWithStepB" name="Message received">
       <bpmn:incoming>SequenceFlow_1qwk5vo</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0m6f1n3</bpmn:outgoing>
-      <bpmn:messageEventDefinition />
+      <bpmn:messageEventDefinition messageRef="Message_1obw9ag" />
     </bpmn:intermediateCatchEvent>
     <bpmn:sequenceFlow id="SequenceFlow_0m6f1n3" sourceRef="IntermediateCatchEvent_ContinueWithStepB" targetRef="Task_StepB" />
     <bpmn:startEvent id="StartEvent_ExampleProcess" name="Process started">
@@ -25,6 +25,7 @@
       <bpmn:outgoing>SequenceFlow_0rr6g0f</bpmn:outgoing>
     </bpmn:serviceTask>
   </bpmn:process>
+  <bpmn:message id="Message_1obw9ag" name="Message_ContinueWithStepB" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="ExampleProcess">
       <bpmndi:BPMNShape id="Task_1khvu6c_di" bpmnElement="Task_StepA">
