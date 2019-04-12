@@ -14,7 +14,7 @@
       <bpmn:incoming>SequenceFlow_0rr6g0f</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="SequenceFlow_0rr6g0f" sourceRef="Task_1a70ymu" targetRef="EndEvent_ExampleProcess" />
-    <bpmn:serviceTask id="Task_1a70ymu" name="Step B" camunda:class="ch.helsana.bpm.delegates.ExampleDelegate">
+    <bpmn:serviceTask id="Task_1a70ymu" name="Step B" camunda:delegateExpression="${ExampleDelegate}">
       <bpmn:incoming>SequenceFlow_06a0r5x</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0rr6g0f</bpmn:outgoing>
     </bpmn:serviceTask>
