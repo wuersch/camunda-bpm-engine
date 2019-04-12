@@ -7,6 +7,13 @@ spring:
     username: camunda
     password: camunda
 
+server:
+  port: 8090
+
 camunda:
   bpm:
     job-execution.deployment-aware: true
+
+job.executor:
+  maxWaitInMillis: 5000
+  waitTimeInMillis: 3000

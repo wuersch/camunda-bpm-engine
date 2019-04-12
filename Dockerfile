@@ -13,6 +13,9 @@ RUN unzip target/camunda-example-app-0.1.0.jar -d target/extracted
 ## Actual camunda engine image
 FROM openjdk:8-jdk-alpine
 
+# Expose a port to provide access to taskforms
+EXPOSE 8090
+
 # Create default working directory for spring-boot/tomcat
 VOLUME /tmp
 
