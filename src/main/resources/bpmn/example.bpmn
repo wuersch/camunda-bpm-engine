@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" id="Definitions_1c92eof" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.2.4">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1c92eof" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.2.4">
   <bpmn:process id="ExampleProcess" name="Example Process" isExecutable="true">
-    <bpmn:startEvent id="StartEvent_ExampleProcess" name="Message received">
-      <bpmn:outgoing>SequenceFlow_05e7jxy</bpmn:outgoing>
-    </bpmn:startEvent>
     <bpmn:task id="Task_StepA" name="Step A">
       <bpmn:incoming>SequenceFlow_05e7jxy</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_06a0r5x</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_1qwk5vo</bpmn:outgoing>
     </bpmn:task>
     <bpmn:sequenceFlow id="SequenceFlow_05e7jxy" sourceRef="StartEvent_ExampleProcess" targetRef="Task_StepA" />
-    <bpmn:sequenceFlow id="SequenceFlow_06a0r5x" sourceRef="Task_StepA" targetRef="Task_StepB" />
-    <bpmn:endEvent id="EndEvent_ExampleProcess" name="Steps completed">
+    <bpmn:endEvent id="EndEvent_ExampleProcess" name="Process completed">
       <bpmn:incoming>SequenceFlow_0rr6g0f</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="SequenceFlow_0rr6g0f" sourceRef="Task_StepB" targetRef="EndEvent_ExampleProcess" />
-    <bpmn:task id="Task_StepB" name="Step B">
-      <bpmn:incoming>SequenceFlow_06a0r5x</bpmn:incoming>
+    <bpmn:sequenceFlow id="SequenceFlow_1qwk5vo" sourceRef="Task_StepA" targetRef="IntermediateCatchEvent_ContinueWithStepB" />
+    <bpmn:intermediateCatchEvent id="IntermediateCatchEvent_ContinueWithStepB" name="Message received">
+      <bpmn:incoming>SequenceFlow_1qwk5vo</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0m6f1n3</bpmn:outgoing>
+      <bpmn:messageEventDefinition />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0m6f1n3" sourceRef="IntermediateCatchEvent_ContinueWithStepB" targetRef="Task_StepB" />
+    <bpmn:startEvent id="StartEvent_ExampleProcess" name="Process started">
+      <bpmn:outgoing>SequenceFlow_05e7jxy</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="Task_StepB" name="Step B" camunda:asyncBefore="true" camunda:class="ch.helsana.bpm.delegates.ExampleDelegate">
+      <bpmn:incoming>SequenceFlow_0m6f1n3</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0rr6g0f</bpmn:outgoing>
-    </bpmn:task>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="ExampleProcess">
-      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_ExampleProcess">
-        <dc:Bounds x="173" y="102" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="146" y="145" width="90" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Task_1khvu6c_di" bpmnElement="Task_StepA">
         <dc:Bounds x="259" y="80" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -34,22 +34,38 @@
         <di:waypoint x="209" y="120" />
         <di:waypoint x="259" y="120" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_06a0r5x_di" bpmnElement="SequenceFlow_06a0r5x">
-        <di:waypoint x="359" y="120" />
-        <di:waypoint x="409" y="120" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="EndEvent_10y4xft_di" bpmnElement="EndEvent_ExampleProcess">
-        <dc:Bounds x="559" y="102" width="36" height="36" />
+        <dc:Bounds x="639" y="102" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="536" y="145" width="82" height="14" />
+          <dc:Bounds x="632" y="145" width="51" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0rr6g0f_di" bpmnElement="SequenceFlow_0rr6g0f">
-        <di:waypoint x="509" y="120" />
-        <di:waypoint x="559" y="120" />
+        <di:waypoint x="591" y="120" />
+        <di:waypoint x="639" y="120" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Task_1lrie4q_di" bpmnElement="Task_StepB">
-        <dc:Bounds x="409" y="80" width="100" height="80" />
+      <bpmndi:BPMNEdge id="SequenceFlow_1qwk5vo_di" bpmnElement="SequenceFlow_1qwk5vo">
+        <di:waypoint x="359" y="120" />
+        <di:waypoint x="407" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="IntermediateCatchEvent_1xpu3ln_di" bpmnElement="IntermediateCatchEvent_ContinueWithStepB">
+        <dc:Bounds x="407" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="381" y="145" width="90" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0m6f1n3_di" bpmnElement="SequenceFlow_0m6f1n3">
+        <di:waypoint x="443" y="120" />
+        <di:waypoint x="491" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="StartEvent_0aac1ui_di" bpmnElement="StartEvent_ExampleProcess">
+        <dc:Bounds x="173" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="153" y="145" width="77" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_01w16xb_di" bpmnElement="Task_StepB">
+        <dc:Bounds x="491" y="80" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
