@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.example.com/camunda/types"
+            elementFormDefault="qualified">
+  <xsd:element name="getPartner">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="id" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="getPartnerResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="Partner">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="id" type="xsd:string"/>
+              <xsd:element name="firstName" type="xsd:string"/>
+              <xsd:element name="lastName" type="xsd:string"/>
+              <xsd:element name="age" type="xsd:integer"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>
