@@ -8,7 +8,12 @@ public class ExampleRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
+        onException(Exception.class)
+            .to("log:ch.helsana.bpm.integration.ExampleRoute?level=ERROR");
+
         from("direct:example")
-         .to("log:ch.helsana.bpm?level=INFO");
+            .routeId("ExampleRoute")
+            .enrich("cxf:todo") // no aggregation strategy, use body of response by default
+            .to("mongodb:mongoClient?database=camunda&collection=partners&operation=insert");
     }
 }

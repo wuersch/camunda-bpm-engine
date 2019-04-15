@@ -7,6 +7,11 @@ spring:
     username: camunda
     password: camunda
 
+ods:
+  mongodb:
+    host: mongodb
+    port: 27017
+
 server:
   port: 8090
 
