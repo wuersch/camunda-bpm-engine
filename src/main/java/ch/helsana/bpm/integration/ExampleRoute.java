@@ -14,7 +14,8 @@ public class ExampleRoute extends RouteBuilder {
 
         from("direct:example")
             .routeId("ExampleRoute")
-            .enrich("cxf:bean:GetPartnerRequestBuilder://http://localhost:8088/mock?serviceClass=com.example.camunda.service.PartnerService&wsdlURL=/wsdl/PartnerService.wsdl") // no aggregation strategy, use body of response by default
+            .bean("GetPartnerRequestBuilder")
+            .enrich("cxf://http://localhost:8088/mock?serviceClass=com.example.camunda.service.PartnerService&wsdlURL=/wsdl/PartnerService.wsdl") // no aggregation strategy, use body of response by default
             .to("mongodb:mongoClient?database=camunda&collection=partners&operation=insert");
     }
 }
