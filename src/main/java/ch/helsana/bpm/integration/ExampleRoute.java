@@ -1,5 +1,6 @@
 package ch.helsana.bpm.integration;
 
+import org.apache.camel.ResolveEndpointFailedException;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
@@ -8,7 +9,7 @@ public class ExampleRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        onException(Exception.class)
+        onException(ResolveEndpointFailedException.class)
             .to("log:ch.helsana.bpm.integration.ExampleRoute?level=ERROR");
 
         from("direct:example")
