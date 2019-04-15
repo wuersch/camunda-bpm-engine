@@ -20,7 +20,7 @@
     <bpmn:startEvent id="StartEvent_ExampleProcess" name="Process started">
       <bpmn:outgoing>SequenceFlow_05e7jxy</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:serviceTask id="Task_StepB" name="Step B" camunda:asyncBefore="true" camunda:class="ch.helsana.bpm.delegates.ExampleDelegate">
+    <bpmn:serviceTask id="Task_StepB" name="Step B" camunda:asyncBefore="true" camunda:delegateExpression="${ExampleDelegate}">
       <bpmn:incoming>SequenceFlow_0l402u5</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0rr6g0f</bpmn:outgoing>
     </bpmn:serviceTask>
