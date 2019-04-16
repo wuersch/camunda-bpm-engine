@@ -88,7 +88,7 @@
 							<sourceRoot>${project.basedir}/target/generated-sources/jaxws</sourceRoot>
 							<wsdlOptions>
 								<wsdlOption>
-									<wsdl>${project.basedir}/src/main/resources/wsdl/PartnerService.wsdl</wsdl>
+									<wsdl>${project.basedir}/src/main/resources/wsdl/Calculator.wsdl</wsdl>
 								</wsdlOption>
 							</wsdlOptions>
 						</configuration>
