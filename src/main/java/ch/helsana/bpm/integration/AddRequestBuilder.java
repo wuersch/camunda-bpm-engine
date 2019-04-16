@@ -5,10 +5,10 @@ import org.tempuri.Add;
 
 @Component("AddRequestBuilder")
 public class AddRequestBuilder {
-    Add build(int a, int b) {
+    Add build(String todo) {
         Add request = new Add();
-        request.setIntA(a);
-        request.setIntB(b);
+        request.setIntA(2);
+        request.setIntB(3);
 
         return request;
     }
