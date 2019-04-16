@@ -14,7 +14,7 @@ public class ExampleRoute extends RouteBuilder {
 
         from("direct:example")
             .routeId("ExampleRoute")
-            .bean("AddRequestBuilder")
+            .bean("AddRequestBuilder?method=build")
             .setHeader(CxfConstants.OPERATION_NAME, constant("Add"))
             .to("cxf://http://www.dneonline.com/calculator.asmx?serviceClass=org.tempuri.CalculatorSoap&wsdlURL=/wsdl/Calculator.wsdl")
             //.to("mongodb:mongoClient?database=camunda&collection=partners&operation=insert")
