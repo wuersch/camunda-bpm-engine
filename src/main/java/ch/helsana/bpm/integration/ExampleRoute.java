@@ -14,9 +14,9 @@ public class ExampleRoute extends RouteBuilder {
 
         from("direct:example")
             .routeId("ExampleRoute")
-            .bean(AddRequestBuilder.class)
+            .bean("GetBankRequestBuilder")
             .setHeader(CxfConstants.OPERATION_NAME, constant("Add"))
-            .to("cxf://http://www.dneonline.com/calculator.asmx?serviceClass=org.tempuri.CalculatorSoap&wsdlURL=/wsdl/Calculator.wsdl")
+            .to("cxf://http://www.thomas-bayer.com/axis2/services/BLZService?serviceClass=com.thomas_bayer.blz.BLZServicePortType&wsdlURL=/wsdl/getBank.wsdl")
             //.to("mongodb:mongoClient?database=camunda&collection=partners&operation=insert")
             .log("The response was ${body[0]}");
             ;
