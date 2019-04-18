@@ -19,6 +19,6 @@ public class ExampleDelegate implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception {
 		LOGGER.info("Invocation of " + ExampleDelegate.class.getName());
 
-		producerTemplate.sendBody("direct:example", "123");
+		producerTemplate.sendBody("direct:example", "10070024");
 	}
 }
