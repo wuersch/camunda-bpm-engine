@@ -20,7 +20,7 @@ public class ExampleRoute extends RouteBuilder {
             .to("cxf://http://www.thomas-bayer.com/axis2/services/BLZService?serviceClass=com.thomas_bayer.blz.BLZServicePortType&wsdlURL=/wsdl/BLZService.wsdl")
             .marshal().json(JsonLibrary.Gson)
             //.to("mongodb:mongoClient?database=camunda&collection=partners&operation=insert")
-            .log("The response was ${body[0]}");
+            .log("The response from getBank was ${body}");
             ;
     }
 }
