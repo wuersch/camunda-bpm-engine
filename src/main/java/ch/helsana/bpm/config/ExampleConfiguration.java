@@ -1,8 +1,7 @@
 package ch.helsana.bpm.config;
 
-import java.util.Arrays;
-
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 
@@ -35,7 +34,8 @@ public class ExampleConfiguration {
                                                                 mongoDbPassword.toCharArray());
         MongoClient mongoClient = new MongoClient(
                                         new ServerAddress(mongoDbHost, mongoDbPort),
-                                        Arrays.asList(credential));
+                                        credential,
+                                        MongoClientOptions.builder().build());
         return mongoClient;
     }
 }
