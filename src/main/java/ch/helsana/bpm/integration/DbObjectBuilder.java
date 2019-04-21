@@ -13,7 +13,7 @@ public class DbObjectBuilder {
 
     public void build(String body, Exchange exchange) {
         LOGGER.info("Body before: " + body);
-        String json = body.replace('[', '{').replace(']', '}');
+        String json = body.replace("[", "\"BlzDetail\": {").replace(']', '}');
         LOGGER.info("Body after: " + body);
         DBObject dbObject = (DBObject) BasicDBObject.parse(json);
         exchange.getOut().setBody(dbObject);
