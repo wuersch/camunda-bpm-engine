@@ -17,10 +17,11 @@ public class ExampleRoute extends RouteBuilder {
             .routeId("ExampleRoute")
             .bean("GetBankRequestBuilder")
             .setHeader(CxfConstants.OPERATION_NAME, constant("getBank"))
-            .to("cxf://http://www.thomas-bayer.com/axis2/services/BLZService?serviceClass=com.thomas_bayer.blz.BLZServicePortType&wsdlURL=/wsdl/BLZService.wsdl")
+            .enrich("cxf://http://www.thomas-bayer.com/axis2/services/BLZService?serviceClass=com.thomas_bayer.blz.BLZServicePortType&wsdlURL=/wsdl/BLZService.wsdl")
+            .log("The SOAP response from getBank was ${body}")
             .marshal().json(JsonLibrary.Gson)
-            //.to("mongodb:mongoClient?database=camunda&collection=partners&operation=insert")
-            .log("The response from getBank was ${body}");
-            ;
+            .log("The JSON response from getBank was ${body}")
+            .to("mongodb:mongoClient?database=camunda&collection=partners&operation=insert")
+        ;
     }
 }
