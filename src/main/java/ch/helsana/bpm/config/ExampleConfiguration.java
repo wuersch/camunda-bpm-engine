@@ -29,9 +29,13 @@ public class ExampleConfiguration {
 
     @Bean
     MongoClient mongoClient() {
-        MongoCredential credential = MongoCredential.createCredential(mongoDbUsername, mongoDb, mongoDbPassword.toCharArray());
-        MongoClient mongoClient = new MongoClient(new ServerAddress("host1", 27017),
-                                                  Arrays.asList(credential));
+        MongoCredential credential = MongoCredential.createCredential(
+                                                                mongoDbUsername,
+                                                                mongoDb,
+                                                                mongoDbPassword.toCharArray());
+        MongoClient mongoClient = new MongoClient(
+                                        new ServerAddress(mongoDbHost, mongoDbPort),
+                                        Arrays.asList(credential));
         return mongoClient;
     }
 }
