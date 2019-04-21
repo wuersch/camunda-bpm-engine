@@ -11,6 +11,9 @@ ods:
   mongodb:
     host: mongodb
     port: 27017
+    db: camunda
+    username: camunda
+    password: camunda
 
 server:
   port: 8090
