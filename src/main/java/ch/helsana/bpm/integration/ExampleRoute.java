@@ -22,6 +22,7 @@ public class ExampleRoute extends RouteBuilder {
             .log("The SOAP response from getBank was ${body}")
             .marshal().json(JsonLibrary.Gson)
             .log("The JSON response from getBank was ${body}")
+            .bean("DbObjectBuilder")
             .to("mongodb:mongoClient?database=camunda&collection=blzdetails&operation=insert")
         ;
     }
