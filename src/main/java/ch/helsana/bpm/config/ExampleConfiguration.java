@@ -1,7 +1,10 @@
 package ch.helsana.bpm.config;
 
+import java.util.Arrays;
+
 import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -26,18 +29,9 @@ public class ExampleConfiguration {
 
     @Bean
     MongoClient mongoClient() {
-        MongoClientURI mongoClientURI = new MongoClientURI("mongodb://" + mongoDbUsername + ":" + mongoDbPassword + "@" + mongoDbHost + ":" +mongoDbPort + "/" + mongoDb);
-         /*
-        MongoCredential credential = MongoCredential.createCredential(username, db, password.toCharArray());
-       
-        MongoClient mongoClient = MongoClients.create(
-            MongoClientSettings.builder()
-                               .applyToClusterSettings(builder -> 
-                                    builder.hosts(Arrays.asList(new ServerAddress(mongoDbHost, mongoDbPort)))
-                                )
-                               .credential(credential)
-                               .build());  
-        */
-        return new MongoClient(mongoClientURI);  
+        MongoCredential credential = MongoCredential.createCredential(mongoDbUsername, mongoDb, mongoDbPassword.toCharArray());
+        MongoClient mongoClient = new MongoClient(new ServerAddress("host1", 27017),
+                                                  Arrays.asList(credential));
+        return mongoClient;
     }
 }
