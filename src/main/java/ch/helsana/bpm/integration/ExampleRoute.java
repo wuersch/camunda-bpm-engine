@@ -30,6 +30,7 @@ public class ExampleRoute extends RouteBuilder {
 
         from("direct:anotherExample")
             .routeId("AnotherExampleRoute")
+            .log("The body is ${body}")
             .bean("BsonValueBuilder")
             .to("mongodb:mongoClient?database=camunda&collection=blzdetails&operation=findById")
         ;
