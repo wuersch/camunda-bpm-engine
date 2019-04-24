@@ -18,13 +18,17 @@ public class ExampleRoute extends RouteBuilder {
             .setHeader(CxfConstants.OPERATION_NAME, constant("getBank"))
             //.enrich("cxf://http://www.thomas-bayer.com/axis2/services/BLZService?serviceClass=com.thomas_bayer.blz.BLZServicePortType&wsdlURL=/wsdl/BLZService.wsdl")
             .enrich("cxf://http://192.168.1.174:8088/mockBLZServiceSOAP11Binding?serviceClass=com.thomas_bayer.blz.BLZServicePortType&wsdlURL=/wsdl/BLZService.wsdl")
-            .log("The SOAP response from getBank was ${body}")
             .marshal().json(JsonLibrary.Gson)
-            .log("The JSON response from getBank was ${body}")
             .bean("DbObjectBuilder")
             .to("mongodb:mongoClient?database=camunda&collection=blzdetails&operation=insert")
             .log("The mongodb response from insert was ${body}")
             .bean("DbObjectUnmarshaller")
+        ;
+
+        from("direct:AnotherExample")
+            .routeId("AnotherExampleRoute")
+            .to("mongodb:mongoClient?database=camunda&collection=blzdetails&operation=findById")
+            .log("The mongodb response from findById was ${body}")
         ;
     }
 }
