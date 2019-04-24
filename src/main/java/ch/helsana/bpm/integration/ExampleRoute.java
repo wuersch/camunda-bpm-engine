@@ -24,6 +24,7 @@ public class ExampleRoute extends RouteBuilder {
             .bean("DbObjectBuilder")
             .to("mongodb:mongoClient?database=camunda&collection=blzdetails&operation=insert")
             .log("The mongodb response from insert was ${body}")
+            .bean("DbObjectUnmarshaller")
         ;
     }
 }
