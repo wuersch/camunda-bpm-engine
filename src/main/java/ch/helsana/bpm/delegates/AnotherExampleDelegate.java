@@ -21,6 +21,8 @@ public class AnotherExampleDelegate implements JavaDelegate {
 		LOGGER.info("Invocation of " + AnotherExampleDelegate.class.getName());
 
 		StringValue idTyped = execution.getVariableTyped("blzdetails_id");
-		producerTemplate.sendBody("direct:anotherExample", idTyped.getValue());
+		Object result = producerTemplate.requestBody("direct:anotherExample", idTyped.getValue());
+
+		LOGGER.info("Got result from mongodb findAllById: " + result.getClass());
 	}
 }

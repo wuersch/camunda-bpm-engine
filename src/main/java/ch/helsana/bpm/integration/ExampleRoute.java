@@ -32,8 +32,6 @@ public class ExampleRoute extends RouteBuilder {
             .routeId("AnotherExampleRoute")
             .bean("BsonValueBuilder")
             .to("mongodb:mongoClient?database=camunda&collection=blzdetails&operation=findById")
-            .log("The mongodb response from findById was ${body}")
-            .process(exchange -> LOGGER.info("Body type: " + exchange.getOut().getBody().getClass()))
         ;
     }
 }
