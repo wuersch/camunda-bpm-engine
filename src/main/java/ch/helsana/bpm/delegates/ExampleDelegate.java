@@ -21,7 +21,7 @@ public class ExampleDelegate implements JavaDelegate {
 
 		Object response = producerTemplate.requestBody("direct:example", "10070024");
 		
-		LOGGER.info("Got response: " + response.getClass().getName());
+		LOGGER.info("Assigning _id from mongodb doc to Camunda variable blzdetails_id: " + response);
 
 		execution.setVariable("blzdetails_id", response.toString());
 	}
