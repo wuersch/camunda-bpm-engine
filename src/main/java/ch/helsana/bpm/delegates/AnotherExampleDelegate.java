@@ -23,6 +23,6 @@ public class AnotherExampleDelegate implements JavaDelegate {
 		StringValue idTyped = execution.getVariableTyped("blzdetails_id");
 		Object result = producerTemplate.requestBody("direct:anotherExample", idTyped.getValue());
 
-		LOGGER.info("Got result from mongodb findAllById: " + result.getClass());
+		LOGGER.info("Got result from mongodb findAllById: " + result);
 	}
 }

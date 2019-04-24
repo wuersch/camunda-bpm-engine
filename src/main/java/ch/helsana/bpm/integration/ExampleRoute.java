@@ -33,6 +33,7 @@ public class ExampleRoute extends RouteBuilder {
             .log("The body is ${body}")
             .bean("BsonValueBuilder")
             .to("mongodb:mongoClient?database=camunda&collection=blzdetails&operation=findById")
+            .bean("DbObjectUnmarshaller2")
         ;
     }
 }
