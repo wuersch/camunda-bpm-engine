@@ -19,6 +19,10 @@ public class ExampleDelegate implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception {
 		LOGGER.info("Invocation of " + ExampleDelegate.class.getName());
 
-		producerTemplate.sendBody("direct:example", "10070024");
+		Object response = producerTemplate.requestBody("direct:example", "10070024");
+		
+		LOGGER.info("Got response: " + response.getClass().getName());
+
+		execution.setVariable("blzdetails_id", response.toString());
 	}
 }
