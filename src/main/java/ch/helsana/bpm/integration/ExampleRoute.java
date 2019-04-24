@@ -3,10 +3,13 @@ package ch.helsana.bpm.integration;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.cxf.common.message.CxfConstants;
 import org.apache.camel.model.dataformat.JsonLibrary;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ExampleRoute extends RouteBuilder {
+    private final Logger LOGGER = LoggerFactory.getLogger(ExampleRoute.class);
 
     @Override
     public void configure() throws Exception {
@@ -30,6 +33,7 @@ public class ExampleRoute extends RouteBuilder {
             .bean("BsonValueBuilder")
             .to("mongodb:mongoClient?database=camunda&collection=blzdetails&operation=findById")
             .log("The mongodb response from findById was ${body}")
+            .process(exchange -> LOGGER.info("Body type: " + exchange.getOut().getBody().getClass()))
         ;
     }
 }
