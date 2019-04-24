@@ -11,14 +11,14 @@ import org.springframework.stereotype.Component;
 
 @Component("AnotherExampleDelegate")
 public class AnotherExampleDelegate implements JavaDelegate {
-	private final Logger LOGGER = LoggerFactory.getLogger(ExampleDelegate.class.getName());
+	private final Logger LOGGER = LoggerFactory.getLogger(AnotherExampleDelegate.class.getName());
 
 	@Autowired
 	private ProducerTemplate producerTemplate;
 
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
-		LOGGER.info("Invocation of " + ExampleDelegate.class.getName());
+		LOGGER.info("Invocation of " + AnotherExampleDelegate.class.getName());
 
 		StringValue idTyped = execution.getVariableTyped("blzdetails_id");
 		producerTemplate.sendBody("direct:anotherExample", idTyped.getValue());

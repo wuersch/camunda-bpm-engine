@@ -25,8 +25,9 @@ public class ExampleRoute extends RouteBuilder {
             .bean("DbObjectUnmarshaller")
         ;
 
-        from("direct:AnotherExample")
+        from("direct:anotherExample")
             .routeId("AnotherExampleRoute")
+            .bean("BsonValueBuilder")
             .to("mongodb:mongoClient?database=camunda&collection=blzdetails&operation=findById")
             .log("The mongodb response from findById was ${body}")
         ;
