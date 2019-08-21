@@ -11,7 +11,7 @@ RUN mkdir -p target/extracted
 RUN unzip target/camunda-example-app-0.1.0.jar -d target/extracted
 
 ## Actual camunda engine image
-FROM openjdk:8-jdk-alpine
+FROM openjdk:8-jre-alpine
 
 # Expose a port to provide access to taskforms
 EXPOSE 8090
